@@ -84,7 +84,9 @@ alias fre="pip freeze > requirements.txt"
 # alias tmux="tmux -f ${HOME}/.config/tmux/tmux.conf"
 
 # Shell integrations
-eval "$(fzf --zsh)"
+# Source fzf if installed
+if [ -f ~/.fzf.zsh ]; then
+  source ~/.fzf.zsh
+fi
 # eval "$(zoxide init --cmd cd zsh)"
-
 
