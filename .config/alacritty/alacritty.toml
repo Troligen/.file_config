@@ -8,8 +8,13 @@ LC_ALL = "en_US.UTF-8"
 LC_CTYPE = "en_US.UTF-8"
 
 [window]
-dimensions = {columns = 130, lines = 33}
-opacity = 0.89
+dimensions = {columns = 130, lines = 35}
+opacity = 0.86
+decorations = "none"
+
+[window.padding]
+x = 7
+y = 7
 
 [font]
 size = 14
