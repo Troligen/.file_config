@@ -8,6 +8,7 @@ LC_ALL = "en_US.UTF-8"
 LC_CTYPE = "en_US.UTF-8"
 
 [window]
+dynamic_padding = true
 dimensions = {columns = 130, lines = 35}
 opacity = 0.86
 decorations = "none"

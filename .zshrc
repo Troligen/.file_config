@@ -71,22 +71,67 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Aliases
 alias ls='ls --color'
-alias vim='nvim'
-alias c='clear'
 alias pt='python3'
-alias py=/usr/bin/python3
 alias cl="clear"
-alias ven="python3 -m venv venv"
-alias venva="source venv/bin/activate"
-alias venvd="deactivate"
 alias fre="pip freeze > requirements.txt"
-
-# alias tmux="tmux -f ${HOME}/.config/tmux/tmux.conf"
 
 # Shell integrations
 # Source fzf if installed
 if [ -f ~/.fzf.zsh ]; then
   source ~/.fzf.zsh
 fi
-# eval "$(zoxide init --cmd cd zsh)"
 
+
+# Yazi config
+export EDITOR=nvim
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+
+#venv wrapper
+# usage
+# $ mkvenv myvirtualenv # creates venv under ~/.virtualenvs/
+# $ venv myvirtualenv   # activates venv
+# $ deactivate          # deactivates venv
+# $ rmvenv myvirtualenv # removes venv
+
+export VENV_HOME="$HOME/.virtualenvs"
+[[ -d $VENV_HOME ]] || mkdir $VENV_HOME
+
+lsvenv() {
+  ls -1 $VENV_HOME
+}
+
+venv() {
+  if [ $# -eq 0 ]
+    then
+      echo "Please provide venv name"
+    else
+      source "$VENV_HOME/$1/bin/activate"
+  fi
+}
+
+mkvenv() {
+  if [ $# -eq 0 ]
+    then
+      echo "Please provide venv name"
+    else
+      python3 -m venv $VENV_HOME/$1
+  fi
+}
+
+rmvenv() {
+  if [ $# -eq 0 ]
+    then
+      echo "Please provide venv name"
+    else
+      rm -r $VENV_HOME/$1
+  fi
+}
+
+# eval "$(zoxide init --cmd cd zsh)"
