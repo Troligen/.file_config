@@ -113,6 +113,7 @@ venv() {
       echo "Please provide venv name"
     else
       source "$VENV_HOME/$1/bin/activate"
+      export PATH="$VENV_HOME/$1/bin:$PATH"
   fi
 }
 
@@ -123,6 +124,23 @@ mkvenv() {
     else
       python3 -m venv $VENV_HOME/$1
   fi
+}
+
+mkjvenv() {
+  if [ $# -eq 0 ]
+  then
+    echo "Please provide a venv name"
+  else
+    python3 -m venv $VENV_HOME/$1
+    source "$VENV_HOME/$1/bin/activate"
+    pip install --upgrade pip
+    pip install jupyterlab jupyterlab-vim
+    pip install catppuccin-jupyterlab
+    pip install jupyterlab-lsp
+    pip install 'python-lsp-server[all]'
+    echo "Virtual environment '$1' created and activated. JupyterLab and Jupyter Vim plugin installed."
+    export PATH="$VENV_HOME/$1/bin:$PATH"
+  fi 
 }
 
 rmvenv() {
