@@ -9,7 +9,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "pyright", "ts_ls" },
+				ensure_installed = { "lua_ls", "pyright", "ts_ls", "jdtls" },
 			})
 		end,
 	},
@@ -19,7 +19,7 @@ return {
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local lspconfig = require("lspconfig")
 
-			local servers = { "lua_ls", "pyright", "ts_ls" }
+			local servers = { "lua_ls", "pyright", "ts_ls", "jdtls" }
 			for _, lsp in ipairs(servers) do
 				lspconfig[lsp].setup({
 					capabilities = capabilities,
