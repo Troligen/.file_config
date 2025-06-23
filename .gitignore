@@ -1,2 +1,4 @@
 .luarc.json
 lazy-lock.json
+.config/github-copilot/versions.json
+.config/github-copilot/apps.json
