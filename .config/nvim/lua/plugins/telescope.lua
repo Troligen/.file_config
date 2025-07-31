@@ -27,7 +27,7 @@ return {
         },
       })
       require("telescope").load_extension("ui-select")
-      vim.ui.select = require("telescope").extensions["ui-select"].select
+      --      vim.ui.select = require("telescope").extensions["ui-select"].select
     end,
   },
 }

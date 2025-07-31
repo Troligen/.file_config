@@ -5,6 +5,7 @@ vim.opt.shiftwidth = 2
 vim.opt.number = true
 vim.opt.signcolumn = "number"
 vim.opt.termguicolors = true
+vim.o.splitright = true
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 vim.api.nvim_create_autocmd("ColorScheme", {
